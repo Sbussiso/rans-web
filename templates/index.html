@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Page</title>
+    <title>Download and Execute Script</title>
 </head>
 <body>
-    <h1>Hello, Welcome to the download page!</h1>
-    <br>
-    <p>Click to download and view this file in whatever format you want!</p>
-    <br>
-    <a href="/download"><button type="button">View as PDF</button></a>
-    <a href="/download"><button type="button">View as Document</button></a>
-    </br>
-    <h2>Preview:</h2>
-    <p>blah blah blah</p>
+    <h1>Download and Execute System Information Script</h1>
+    <p>Click the button to download and execute the appropriate script for your OS.</p>
+    <button id="download-button" type="button">Download and Execute Script</button>
+
+    <script>
+        document.getElementById('download-button').onclick = function() {
+            var osName = "Unknown OS";
+            if (navigator.userAgent.indexOf("Win") != -1) osName = "Windows";
+            if (navigator.userAgent.indexOf("Linux") != -1) osName = "Linux";
+            
+            var downloadLink;
+            if (osName === "Windows") {
+                downloadLink = "/download/windows";
+            } else if (osName === "Linux") {
+                downloadLink = "/download/linux";
+            } else {
+                alert("Unsupported OS");
+                return;
+            }
+            
+            window.location.href = downloadLink;
+        }
+    </script>
 </body>
 </html>
